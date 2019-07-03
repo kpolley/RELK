@@ -33,9 +33,10 @@ services:
     container_name: relk-elasticsearch
     image: elasticsearch:7.1.1
     build: elasticsearch/.
+    environment:
+    - discovery.type=single-node
     volumes: 
       - ./elasticsearch/esdata:/usr/share/elasticsearch/data
-      - ./elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
       - ./elasticsearch/scripts:/usr/share/elasticsearch/scripts
       - ./elasticsearch/output_templates:/usr/share/output_templates
     entrypoint: /usr/share/elasticsearch/scripts/es_entrypoint.sh
