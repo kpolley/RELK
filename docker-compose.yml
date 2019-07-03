@@ -25,13 +25,10 @@ services:
     volumes:
       - ./logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
       - ./logstash/pipelines:/usr/share/logstash/pipeline/
-      - /etc/hosts:/etc/hosts
     depends_on:
       - "kibana"
     restart: always
-    ports:
-      - "6667:6667"
-
+  
   elasticsearch:
     container_name: relk-elasticsearch
     image: elasticsearch:7.1.1
