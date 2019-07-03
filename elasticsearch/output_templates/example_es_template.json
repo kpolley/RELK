@@ -1,0 +1,15 @@
+{
+    "index_patterns": [ "es-index-*" ],
+    "version": 20190307,
+    "settings": {
+      "index.refresh_interval": "5s"
+    },
+    "mappings":{
+      "properties":{
+        "example_string":{"type":"text"},
+        "example_boolean":{"type":"boolean"},
+        "example_int":{"type":"integer"},
+        "example_ip":{"type":"ip"}
+      }
+    }
+  }

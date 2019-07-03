@@ -1,0 +1,67 @@
+version: '3.4'
+services:
+  kafka:
+    container_name: relk-kafka
+    image: kafka:latest
+    build: kafka/.
+    depends_on:
+      - "zookeeper"
+    restart: always
+    ports:
+      - "9092:9092"
+
+  zookeeper:
+    container_name: relk-zookeeper
+    image: zookeeper:latest
+    build: zookeeper/.
+    depends_on:
+      - "logstash"
+    restart: always
+
+  logstash:
+    container_name: relk-logstash
+    image: logstash:7.1.1
+    build: logstash/.
+    volumes:
+      - ./logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
+      - ./logstash/pipelines:/usr/share/logstash/pipeline/
+      - /etc/hosts:/etc/hosts
+    depends_on:
+      - "kibana"
+    restart: always
+    ports:
+      - "6667:6667"
+
+  elasticsearch:
+    container_name: relk-elasticsearch
+    image: elasticsearch:7.1.1
+    build: elasticsearch/.
+    volumes: 
+      - ./elasticsearch/esdata:/usr/share/elasticsearch/data
+      - ./elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./elasticsearch/scripts:/usr/share/elasticsearch/scripts
+      - ./elasticsearch/output_templates:/usr/share/output_templates
+    entrypoint: /usr/share/elasticsearch/scripts/es_entrypoint.sh
+    restart: always
+  
+  kibana:
+    container_name: relk-kibana
+    image: kibana:7.1.1
+    build: kibana/.
+    restart: always
+    depends_on: 
+      - "elasticsearch"
+    ports:
+      - "5601:5601"
+
+  jupyter:
+    container_name: relk-jupyter
+    image: jupyter/all-spark-notebook
+    build: jupyter/.
+    depends_on:
+      - "elasticsearch"
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./jupyter/notebooks:/home/jovyan/work
+    entrypoint: start.sh jupyter lab --NotebookApp.password='sha1:8adcae9f0773:5aedbc062fd9631599baf74c3e682cc909193f0e' # password is 'research'
