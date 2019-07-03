@@ -4,7 +4,7 @@ The Research Elastic Stack Package
 ![RELK Overview](resources/images/RELK_Overview.png)
 
 ## Goal
-To design an Elastic stack that includes Spark out of the box for in-depth data analysis and computation. 
+To design an Elastic stack that includes Spark out of the box for in-depth data analysis and computation.
 
 ## Features
 * **Kafka**: A distributed publish-subscribe messaging system that is designed to be fast, scalable, fault-tolerant, and durable.
@@ -40,3 +40,7 @@ If you'd like to have the comtainers running in the background:
 
 ## TODO
 * Password protect ES/Kibana
+
+## Worthy mentions
+* The inspiration: [HELK -- The Hunting Elastic Stack](https://github.com/Cyb3rWard0g/HELK)
+* [Jupyer/Docker Stacks](https://github.com/jupyter/docker-stacks). An excellent repository with a ton of plug-and-play notebooks. 
