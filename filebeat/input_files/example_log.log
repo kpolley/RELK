@@ -1,0 +1,2 @@
+Logs will be read here and passed to Logstash
+You can change the input log location in filebeat.yml :)

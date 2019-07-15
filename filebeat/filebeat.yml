@@ -1,0 +1,23 @@
+filebeat.inputs:
+  - type: log
+  - paths: /usr/share/filebeat/input_files/*
+
+filebeat.config:
+  modules:
+    path: ${path.config}/modules.d/*.yml
+    reload.enabled: false
+
+filebeat.autodiscover:
+  providers:
+    - type: docker
+      hints.enabled: true
+
+processors:
+- add_cloud_metadata: ~
+
+# Use this if you'd like to output logs directly to elasticsearch
+#output.elasticsearch:
+#  hosts: ["relk-elasticsearch:9200"]
+
+output.logstash:
+  hosts: ["relk-logstash:5044"]

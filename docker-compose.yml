@@ -18,6 +18,16 @@ services:
       - "logstash"
     restart: always
 
+  filebeat:
+    container_name: relk-filebeat
+    image: filebeat:7.2.0
+    build: filebeat/.
+    volumes:
+      - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
+    depends_on:
+      - "logstash"
+    restart: always
+
   logstash:
     container_name: relk-logstash
     image: logstash:7.1.1
