@@ -24,7 +24,7 @@ services:
     build: filebeat/.
     volumes:
       - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
-      _ ./filebeat/input_files:/usr/share/filebeat/input_files
+      - ./filebeat/input_files:/usr/share/filebeat/input_files
     depends_on:
       - "logstash"
     restart: always
