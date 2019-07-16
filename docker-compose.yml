@@ -23,7 +23,6 @@ services:
     image: filebeat:7.2.0
     build: filebeat/.
     volumes:
-      - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml
       - ./filebeat/input_files:/usr/share/filebeat/input_files
     depends_on:
       - "logstash"
@@ -34,7 +33,6 @@ services:
     image: logstash:7.1.1
     build: logstash/.
     volumes:
-      - ./logstash/logstash.yml:/usr/share/logstash/config/logstash.yml
       - ./logstash/pipelines:/usr/share/logstash/pipeline/
     depends_on:
       - "kibana"

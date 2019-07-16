@@ -12,4 +12,4 @@ filebeat/input_files/*
 logstash/pipelines/*
 !/logstash/pipelines/example-logstash-template.conf
 
-
+jupyter/notebooks/.ipynb_checkpoints/
