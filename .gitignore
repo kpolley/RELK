@@ -1,3 +1,3 @@
 *.swp
 elasticsearch/esdata/*
-!elasticsearch/esdata/README.md
+!elasticsearch/esdata/.gitignore Neccessary so that directory is created by user and not by Docker
