@@ -1,2 +1,3 @@
 *.swp
-elasticsearch/esdata
+elasticsearch/esdata/*
+!elasticsearch/esdata/README.md
