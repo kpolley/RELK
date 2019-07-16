@@ -1,28 +1,31 @@
 # RELK
-The Research Elastic Stack Package
+The Research Elastic Stack (ELK) 
 
 ![RELK Overview](resources/images/RELK_Overview.png)
 
 ## Goal
-To design an Elastic stack that includes Spark out of the box for in-depth data analysis and computation.
+To make it just as easy to analyze data as it is to collect it. 
 
 ## Features
-* **Kafka**: A distributed publish-subscribe messaging system that is designed to be fast, scalable, fault-tolerant, and durable.
-* **Elasticsearch**: A highly scalable open-source full-text search and analytics engine.
-* **Logstash**: A data collection engine with real-time pipelining capabilities.
-* **Kibana**: An open source analytics and visualization platform designed to work with Elasticsearch.
-* **ES-Hadoop**: An open-source, stand-alone, self-contained, small library that allows Hadoop jobs (whether using Map/Reduce or libraries built upon it such as Hive, Pig or Cascading or new upcoming libraries like Apache Spark ) to interact with Elasticsearch.
-* **Spark**: A fast and general-purpose cluster computing system. It provides high-level APIs in Java, Scala, Python and R, and an optimized engine that supports general execution graphs.
+* **Kafka**: A distributed event streaming platform capable of handling trillions of events a day
+* **FileBeat**: A lightweight single-purpose data shipper from Elastic
+* **Elasticsearch**: A highly scalable search and analytics engine
+* **Logstash**: A dynamic data collection pipeline with an extensible plugin ecosystem.
+* **Kibana**: An analytics and visualization platform designed to work with Elasticsearch.
+* **ES-Hadoop**: A library that allows Hadoop jobs (& therefore Spark) to interact with Elasticsearch.
+* **Spark**: A fast and general-purpose cluster computing system. It provides high-level APIs in Scala, Python and R.
 * **GraphFrames**: A package for Apache Spark which provides DataFrame-based Graphs.
-* **Jupyter Notebook**: An open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text.
+* **Jupyter Notebook**: A web application that allows you to create interactive notebooks. 
 
 ## Preparation
 The only major modifications needed are:
 1. Remove and replace the elasticsearch index templates
-    * Found in RELK/elasticsearch/output_templates
+    * Located in `RELK/elasticsearch/output_templates`
 
 2. Remove and replace the logstash conf files
-    * Found in RELK/logstash/pipelines
+    * Located in `RELK/logstash/pipelines`
+
+3. Either add the files to analyze into `RELK/filebeat/input_files` or configure Kafka/FileBeat to ingest files for your use-case.
 
 
 ## Running
@@ -33,14 +36,15 @@ If you'd like to have the comtainers running in the background:
 
 
 ## Other Notes
-* Kafka uses port 9092
-* Kibana uses 9601
-* Jupyter uses 8888
-* By default, Jupyter notebooks password is 'research'. This can be changed in the docker-compose file
+* Kafka listens on port 9092
+* Kibana uses 9601 (Access it via https://localhost:9601)
+* Jupyter uses 8888 (Access it via https://localhost:8888)
+  *  By default, Jupyter notebooks password is 'research'. This can be changed in the docker-compose file
 
 ## TODO
 * Password protect ES/Kibana
 
 ## Worthy mentions
 * The inspiration: [HELK -- The Hunting Elastic Stack](https://github.com/Cyb3rWard0g/HELK)
-* [Jupyer/Docker Stacks](https://github.com/jupyter/docker-stacks). An excellent repository with a ton of plug-and-play notebooks. 
+* [Jupyer/Docker Stacks](https://github.com/jupyter/docker-stacks). An excellent repository with a ton of plug-and-play notebooks. It is incredible how easy it is to set up.
+* [Docker @ Elastic](https://www.docker.elastic.co/): Plug-and-play docker containers for Beats, Logstash, Elasticsearch, and Kibana.
