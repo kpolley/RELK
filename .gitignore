@@ -1,3 +1,15 @@
 *.swp
+
 elasticsearch/esdata/*
 !elasticsearch/esdata/README.md
+
+elasticsearch/output_templates/*
+!elasticsearch/output_templates/example_es_template.json
+
+filebeat/input_files/*
+!filebeat/input_files/README.md
+
+logstash/pipelines/*
+!/logstash/pipelines/example-logstash-template.conf
+
+
