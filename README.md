@@ -31,13 +31,13 @@ The only major modifications needed are:
 ## Running
 1. Easy! `docker-compose up`
 
-If you'd like to have the comtainers running in the background:
+If you'd like to have the containers running in the background:
 `docker-compose up -d`
 
 
 ## Other Notes
 * Kafka listens on port 9092
-* Kibana uses 5601 (Access it via https://localhost:5601)
+* Kibana uses 5601 (Access it via localhost:5601)
 * Jupyter uses 8888 (Access it via localhost:8888)
   *  By default, Jupyter notebooks password is 'research'. This can be changed in the docker-compose file
 
