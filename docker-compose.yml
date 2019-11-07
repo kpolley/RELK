@@ -4,6 +4,8 @@ services:
     container_name: relk-kafka
     image: kafka:latest
     build: kafka/.
+    volumes:
+      - ./kafka/server.properties:/opt/kafka/config
     depends_on:
       - "zookeeper"
     restart: always
